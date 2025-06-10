@@ -18,8 +18,8 @@ headers= {
 "Connection": "keep-alive"
 }
 proxies = {
-    "http": "http://127.0.0.1:8081",
-    "https": "http://127.0.0.1:8081"
+    "http": "http://127.0.0.1:8080",
+    "https": "http://127.0.0.1:8080"
 }
 
 def xor_bytes(data: bytes, key: str) -> bytes:
